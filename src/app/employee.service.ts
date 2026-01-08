@@ -23,7 +23,11 @@ export class EmployeeService {
   //"Expect an array of Employees" (Employee[]).
   //"Return the results" as an Observable so the UI can display them once they arrive. 
   getEmployees(): Observable<Employee[]> {
-  return this.http.get<Employee[]>(this.apiUrl)
+    return this.http.get<Employee[]>(this.apiUrl)
+  }
+
+  createEmployee(employee: Employee): Observable<Employee>{
+    return this.http.post<Employee>(this.apiUrl, employee)
   }
 
 }
