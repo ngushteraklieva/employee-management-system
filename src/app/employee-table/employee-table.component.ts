@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../employee.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'employee-table',
@@ -21,7 +22,7 @@ export class EmployeeTableComponent {
   // }
   //Dependency Injection -  the service is immediately available as this.employeeService 
   // anywhere in your class, including inside ngOnInit. 
-  constructor(private employeeService: EmployeeService){}
+  constructor(private employeeService: EmployeeService, private router: Router){}
 
   ngOnInit(){
     this.employeeService.getEmployees().subscribe((data:Employee[])=>{
@@ -40,4 +41,8 @@ export class EmployeeTableComponent {
       }
     })
   }
+
+  editEmployee(id:number): void {
+    this.router.navigate(['/edit', id])
+  } 
 }
